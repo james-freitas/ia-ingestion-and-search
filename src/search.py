@@ -37,8 +37,6 @@ PERGUNTA DO USUÁRIO:
 RESPONDA A "PERGUNTA DO USUÁRIO"
 """
 
-question = "Qual é o faturamento da empresa Alfa Energia Holding?"
-
 def search_prompt(question=None):
 
     embeddings = OpenAIEmbeddings(model=os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small"))
@@ -50,19 +48,8 @@ def search_prompt(question=None):
       use_jsonb=True
     )
 
-    results = store.similarity_search_with_score(question, k=3)
+    results = store.similarity_search_with_score(question, k=10)
 
-    for i, (doc, score) in enumerate(results, start=1):
-        print("="*50)
-        print(f"Resultado {i} (score: {score:.2f})")
-        print("="*50)
+    context = "\n\n".join([doc.page_content for doc, score in results])
 
-        print("\nTexto:\n")
-        print(doc.page_content.strip())
-
-        print("\nMetadados:\n")
-        for k, v in doc.metadata.items():
-            print(f"{k}: {v}")
-
-if __name__ == "__main__":
-    search_prompt(question)
+    return context

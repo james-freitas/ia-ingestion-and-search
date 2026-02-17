@@ -47,3 +47,9 @@ docker-compose up
 ```bash
 python src/ingest.py
 ```
+
+## Execução do chat
+
+- Para iniciar o chat execute `python src/chat.py`
+- Faça perguntas relacionadas ao contexto das empresas do PDF
+- Quando quiser sair do chat digite `sair`
