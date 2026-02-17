@@ -53,3 +53,12 @@ python src/ingest.py
 - Para iniciar o chat execute `python src/chat.py`
 - Faça perguntas relacionadas ao contexto das empresas do PDF
 - Quando quiser sair do chat digite `sair`
+
+
+## Encerramento
+- Quando finalizar a execução do programa finalize os containers docker e desative a máquina virtual do Python
+
+```
+docker compose down
+deactivate
+```
